@@ -8,4 +8,4 @@ RUN bundle install --system
 
 EXPOSE 4568
 
-ENTRYPOINT ["support/docker_run.sh"]
+ENTRYPOINT ["bin/fake_sqs"]
