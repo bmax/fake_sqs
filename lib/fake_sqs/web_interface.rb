@@ -30,10 +30,6 @@ module FakeSQS
     end
 
     post "/" do
-      puts request.env["HTTP_HOST"]
-      puts "Received request to / with action #{action} and params #{params}"
-
-
       params['logger'] = logger
       if params['QueueUrl']
         queue = URI.parse(params['QueueUrl']).path.gsub(/\//, '')
@@ -52,8 +48,6 @@ module FakeSQS
     end
 
     post "/:queue" do |queue|
-      puts "Received request to /:queue with action #{action} and params #{params}"
-
       settings.api.call(action, queue, params)
     end
 
