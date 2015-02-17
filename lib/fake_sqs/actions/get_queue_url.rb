@@ -12,7 +12,7 @@ module FakeSQS
         name = params.fetch("QueueName")
         queue = @queues.get(name, params)
         @responder.call :GetQueueUrl do |xml|
-          xml.QueueUrl @server.url_for(queue.name)
+          xml.QueueUrl @server.url_for(queue.name, params[:server_config])
         end
       end
 

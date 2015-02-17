@@ -36,6 +36,14 @@ module FakeSQS
         return settings.api.call(action, queue, params) unless queue.empty?
       end
 
+      # TODO: this better
+      if action == "GetQueueUrl"
+        params[:server_config] = {
+          host: request.env["SERVER_NAME"],
+          port: request.env["SERVER_PORT"]
+        }
+      end
+
       settings.api.call(action, params)
     end
 
